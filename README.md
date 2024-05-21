@@ -33,7 +33,7 @@ Also, my intention was not to fully cover logback configuration domain, only a p
 Add the plugin to your `build.gradle`:
 ```Groovy
 plugins {
-    id "io.github.zsz.logbackyaml" version "1.0.0"
+    id "io.github.zsz.logback-yaml" version "1.0.0"
 }
 ```
 
