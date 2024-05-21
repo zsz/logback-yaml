@@ -1,0 +1,58 @@
+plugins {
+    id 'com.gradle.plugin-publish' version '1.2.1'
+    id 'java-gradle-plugin'
+    id 'groovy'
+    id 'maven-publish'
+}
+
+gradlePlugin {
+    website = 'https://github.com/zsz/logback-yaml'
+    vcsUrl = 'https://github.com/zsz/logback-yaml'
+    plugins {
+        logbackYaml {
+            id = 'io.github.zsz.logback-yaml'
+            displayName = 'logback-yaml'
+            description = 'Configuring Logback in YaML format'
+            tags = ['logback', 'logging', 'xml', 'yml', 'yaml']
+            implementationClass = 'io.github.zsz.logbackyaml.LogbackYamlPlugin'
+        }
+    }
+}
+
+ext {
+    major = 1
+    minor = 0
+    bugfix = 0
+    logbackYamlVersion = "${major}.${minor}.${bugfix}"
+
+    versions = [
+        'jackson': '2.17.0',
+        'junit'  : '1.7.2',
+        'spock'  : '2.3-groovy-3.0'
+    ]
+}
+
+group = "io.github.zsz"
+version = logbackYamlVersion
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+
+
+    testImplementation "org.junit.platform:junit-platform-runner:${versions.junit}"
+    testImplementation "org.spockframework:spock-core:${versions.spock}"
+
+    implementation "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${versions.jackson}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${versions.jackson}"
+}
+
+test {
+    useJUnitPlatform()
+}
+

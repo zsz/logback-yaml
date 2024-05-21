@@ -1,0 +1,25 @@
+<configuration scan="true">
+  <scanPeriod>60 seconds</scanPeriod>
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="Console">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %class{1}.%M\(%file:%line\)%n %highlight(%-5level) - %msg%n%xEx</pattern>
+    </encoder>
+    <target>System.out</target>
+  </appender>
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="RollingFile">
+    <file>myapp.log</file>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{1}.%M\(%file:%line\) - %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>myapp-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+      <maxHistory>5</maxHistory>
+      <totalSizeCap>100MB</totalSizeCap>
+    </rollingPolicy>
+  </appender>
+  <root level="debug">
+    <appender-ref ref="Console"/>
+    <appender-ref ref="RollingFile"/>
+  </root>
+  <logger name="my.package" level="debug"/>
+</configuration>

@@ -1,0 +1,27 @@
+configuration:
+  scan: "true"
+  scanPeriod: 60 seconds
+  appenders:
+    - name: Console
+      class: ch.qos.logback.core.ConsoleAppender
+      target: System.out
+      encoder:
+        pattern: "%d{HH:mm:ss.SSS} [%thread] %class{1}.%M\\(%file:%line\\)%n\t%highlight(%-5level) - %msg%n%xEx"
+    - name: RollingFile
+      class: ch.qos.logback.core.rolling.RollingFileAppender
+      file: myapp.log
+      rollingPolicy:
+        class: ch.qos.logback.core.rolling.TimeBasedRollingPolicy
+        fileNamePattern: myapp-%d{yyyy-MM-dd}.log.gz
+        maxHistory: 5
+        totalSizeCap: 100MB
+      encoder:
+        pattern: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{1}.%M\\(%file:%line\\) - %msg%n"
+  root:
+    level: debug
+    appenderRefs:
+      - ref: Console
+      - ref: RollingFile
+  loggers:
+    - name: "my.package"
+      level: debug
