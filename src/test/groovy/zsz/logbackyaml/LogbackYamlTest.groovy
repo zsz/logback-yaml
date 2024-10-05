@@ -39,8 +39,7 @@ class LogbackYamlTest extends Specification {
       level: debug"""
 
   static final String EXPECTED_XML_CONTENT =
-      """<configuration scan="true">
-  <scanPeriod>60 seconds</scanPeriod>
+      """<configuration scan="true" scanPeriod="60 seconds">
   <appender class="ch.qos.logback.core.ConsoleAppender" name="Console">
     <encoder>
       <pattern>%d{HH:mm:ss.SSS} [%thread] %class{1}.%M\\(%file:%line\\)%n\t%highlight(%-5level) - %msg%n%xEx</pattern>

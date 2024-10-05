@@ -25,7 +25,7 @@ class Configuration implements IgnoredPropsMixin {
   @JsonInclude(JsonInclude.Include.NON_EMPTY)
   List<Import> imports
 
-  @JacksonXmlProperty(localName = "scanPeriod")
+  @JacksonXmlProperty(isAttribute = true)
   String scanPeriod
 
   @JsonTypeInfo(
